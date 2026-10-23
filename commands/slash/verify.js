@@ -9,7 +9,9 @@ module.exports = {
     .setDescription("Verify your Roblox account through Bloxlink."),
 
   async execute(client, interaction) {
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply({
+      flags: 64,
+    });
 
     try {
       const discordId = interaction.user.id;
