@@ -9,13 +9,6 @@ module.exports = {
     .setDescription("Verify your Roblox account through Bloxlink."),
 
   async execute(client, interaction) {
-    if (!interaction.guild) {
-      return interaction.reply({
-        content: "You must run this command inside a server.",
-        ephemeral: true,
-      });
-    }
-
     await interaction.deferReply({ ephemeral: true });
 
     try {
