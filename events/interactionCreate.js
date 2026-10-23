@@ -5,12 +5,12 @@ module.exports = {
     try {
       if (interaction.isChatInputCommand()) {
         const cmd = client.slashCommands.get(interaction.commandName);
-        if (cmd) await cmd.execute(interaction);
+        if (cmd) await cmd.execute(client, interaction);
       }
 
       if (interaction.isButton()) {
         const btn = client.buttons.get(interaction.customId);
-        if (btn) await btn.execute(interaction);
+        if (btn) await btn.execute(client, interaction);
       }
 
       if (interaction.isStringSelectMenu()) {
@@ -19,18 +19,22 @@ module.exports = {
         const menu = client.menus.get(interaction.customId);
 
         if (menu) {
-          await menu.execute(interaction);
+          await menu.execute(client, interaction);
         }
       }
 
       if (interaction.isModalSubmit()) {
         const modal = client.modals.get(interaction.customId);
-        if (modal) await modal.execute(interaction);
+        if (modal) await modal.execute(client, interaction);
       }
     } catch (err) {
       console.error(err);
-      if (!interaction.replied) {
-        interaction.reply({ content: "Error occurred.", ephemeral: true });
+
+      if (!interaction.replied && !interaction.deferred) {
+        await interaction.reply({
+          content: "Error occurred.",
+          flags: 64,
+        });
       }
     }
   },
