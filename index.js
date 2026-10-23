@@ -17,7 +17,7 @@ client.buttons = new Collection();
 client.menus = new Collection();
 client.modals = new Collection();
 
-const connectDatabase = require("./db/mongoose");
+const connectDatabase = require("./database/mongoose");
 connectDatabase();
 
 client.prefix = "-";
