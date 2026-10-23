@@ -9,7 +9,7 @@ module.exports = {
     .setDescription("Verify your Roblox account through Bloxlink."),
 
   async execute(client, interaction) {
-    if (!interaction.inGuild()) {
+    if (!interaction.guild) {
       return interaction.reply({
         content: "You must run this command inside a server.",
         ephemeral: true,
